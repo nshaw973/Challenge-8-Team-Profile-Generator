@@ -1,10 +1,14 @@
 const staff = require('../index');
 
+//This creates the cards for each employee
 function createCards() {
 
+    //cardData will be where all the cards are stored so that it can be injected directly in the html page template
     const cardData = [];
+    //this is basically taking away the staff object and stepping down a step to go directly to the staff array that was imported from the index.js
     const fullStaff = staff.staff;
     
+    //loops through to generate each personalized card for the employees
     for (let i = 0; i < fullStaff.length; i++) {
   
     const staffValues = Object.values(fullStaff[i])
@@ -30,9 +34,9 @@ function createCards() {
     cardData.push(cardTemplate);
   
     };
-  
+    //The main html page with super basic styling from bootstrap
     const htmlTemplate = `
-    <!DOCTYPE html>
+  <!DOCTYPE html>
   <html>
     <head>
       <title>My Company Staff</title>
@@ -58,7 +62,8 @@ function createCards() {
   
     </body>
   </html>`
-  return htmlTemplate;
+  return htmlTemplate.trim();
   }
 
+  //exporting the function so that it can be called in the index.js when all the prompts for the employees have been answered.
   module.exports = createCards;
