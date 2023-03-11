@@ -18,7 +18,7 @@ function createCards() {
       if ('github' in fullStaff[i]) {
         return `<li class="list-group-item">Github: <a href="https://github.com/${staffValues[4]}">${staffValues[4]}</a></li>`
       } else if ('school' in fullStaff[i]) {
-        return `<li class="list-group-item">School ${staffValues[4]}</li>`
+        return `<li class="list-group-item">School: ${staffValues[4]}</li>`
       } else {
         return `<li class="list-group-item">Office: ${staffValues[4]}</li>`
       }

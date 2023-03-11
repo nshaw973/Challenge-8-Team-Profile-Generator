@@ -3,6 +3,8 @@ Challenge # for UCI bootcamp class, for module 10.
 
 ## Video Demonstration
 
+[Challenge 8 Video Demonstration](https://drive.google.com/file/d/1qVKeB0E4BXWlL7T91PN7tkR8Ww75-uvM/view?usp=share_link)
+
 ## Task
 
 The task was to create a staff generator that creates an html file that populates with cards that contain all the employees info based on the users input.

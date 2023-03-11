@@ -12,11 +12,10 @@ describe('Manager', () => {
         expect(manager.employeeName).toEqual('Nathan');
         expect(manager.id).toEqual(1);
         expect(manager.email).toEqual('nshaw973@gmail.com');
-        expect(manager.officeNumber).toEqual(1);
     });
     it('Manager has an office number.', () => {
 
-        const manager = new Manager();
+        const manager = new Manager('name', 'id', 'email@email.com', 'Manager', 1);
         const officeNumber = manager.officeNumber;
 
         expect(officeNumber).toEqual(1);
