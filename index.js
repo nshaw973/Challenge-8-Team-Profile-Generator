@@ -24,7 +24,7 @@ async function getStaff() {
 
     staff.push(manager);
 
-    getEngineer();
+    addEngineer();
 
 }
 
@@ -52,7 +52,7 @@ function addEngineer() {
     .prompt([
         {
             type: 'confirm',
-            message: 'Add another Engineer?',
+            message: 'Would you like to add an Engineer?',
             name: 'confirm'
         }
     ]).then((data) => {
@@ -60,7 +60,7 @@ function addEngineer() {
         if (data.confirm) {
             getEngineer();
         } else {
-            getIntern();
+            addIntern();
         }
     })
 }
@@ -89,7 +89,7 @@ function addIntern() {
     .prompt([
         {
             type: 'confirm',
-            message: 'Add another Intern?',
+            message: 'Would you like to add an Intern?',
             name: 'confirm'
         }
     ]).then((data) => {
