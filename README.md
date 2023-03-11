@@ -5,7 +5,13 @@ Challenge # for UCI bootcamp class, for module 10.
 
 ## Task
 
+The task was to create a staff generator that creates an html file that populates with cards that contain all the employees info based on the users input.
+This is done with Inquirer.
+
+Besides just creating the app, the task required to create a unit test that uses Jest to run tests.
 ## Code Breakdown
+
+
 
 ## User Story
 

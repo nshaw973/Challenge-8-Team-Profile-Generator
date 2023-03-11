@@ -5,6 +5,7 @@ const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 
 const inquirer = require('inquirer');
+//function used for populating the template with users inputs
 const createCards = require('./src/htmlTemplate');
 
 //contains all the staff objects to be used for later in teh HTML creation
@@ -28,6 +29,24 @@ async function getStaff() {
 
 }
 
+//Asks user if they want to add an Engineer.
+function addEngineer() {
+    inquirer
+    .prompt([
+        {
+            type: 'confirm',
+            message: 'Would you like to add an Engineer?',
+            name: 'confirm'
+        }
+    ]).then((data) => {
+        if (data.confirm) {
+            getEngineer();
+        } else {
+            addIntern();
+        }
+    })
+}
+
 //Moves from manager to Engineer
 async function getEngineer() {
 
@@ -47,20 +66,20 @@ async function getEngineer() {
 
 }
 
-function addEngineer() {
+//asks user if they want to add an Intern
+function addIntern() {
     inquirer
     .prompt([
         {
             type: 'confirm',
-            message: 'Would you like to add an Engineer?',
+            message: 'Would you like to add an Intern?',
             name: 'confirm'
         }
     ]).then((data) => {
-
         if (data.confirm) {
-            getEngineer();
+            getIntern();
         } else {
-            addIntern();
+            writeHTML();
         }
     })
 }
@@ -82,24 +101,6 @@ async function getIntern() {
     //Moves to ask user if user wants to add another Intern
     addIntern();
 
-}
-
-function addIntern() {
-    inquirer
-    .prompt([
-        {
-            type: 'confirm',
-            message: 'Would you like to add an Intern?',
-            name: 'confirm'
-        }
-    ]).then((data) => {
-
-        if (data.confirm) {
-            getIntern();
-        } else {
-            writeHTML();
-        }
-    })
 }
 
 function writeHTML() {
