@@ -3,10 +3,12 @@ const fs = require('fs')
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
-const createCards = require('./src/htmlTemplate')
+
+const inquirer = require('inquirer');
+const createCards = require('./src/htmlTemplate');
 
 //contains all the staff objects to be used for later in teh HTML creation
-const staff = []
+const staff = [];
 
 //Starts questionare to get Managers name and info
 async function getStaff() {
@@ -18,7 +20,7 @@ async function getStaff() {
     await manager.getName();
     await manager.getId();
     await manager.getEmail();
-    manager.officeNumber;
+    await manager.getOffice();
 
     staff.push(manager);
 
@@ -40,13 +42,27 @@ async function getEngineer() {
 
     staff.push(engineer);
     
-    //Loops through questionare until 3 engineers have populated, then it moves to the intern
-    if(staff.length < 4) {
-    getEngineer();
-    } else {
-        getIntern();
-    } 
+    //Moves to see if user wants to add another Engineer?
+    addEngineer();
 
+}
+
+function addEngineer() {
+    inquirer
+    .prompt([
+        {
+            type: 'confirm',
+            message: 'Add another Engineer?',
+            name: 'confirm'
+        }
+    ]).then((data) => {
+
+        if (data.confirm) {
+            getEngineer();
+        } else {
+            getIntern();
+        }
+    })
 }
 
 //Gets interns info
@@ -63,14 +79,33 @@ async function getIntern() {
 
     staff.push(intern);
 
+    //Moves to ask user if user wants to add another Intern
+    addIntern();
 
-    //Moves to last step to generate the HTML file
-    writeHTML();
+}
 
+function addIntern() {
+    inquirer
+    .prompt([
+        {
+            type: 'confirm',
+            message: 'Add another Intern?',
+            name: 'confirm'
+        }
+    ]).then((data) => {
+
+        if (data.confirm) {
+            getIntern();
+        } else {
+            writeHTML();
+        }
+    })
 }
 
 function writeHTML() {
 
+    //Generates the HTML page and turns it into the htmlDatas value.
+    //createCards() is from ./src/htmlTemplate
     const htmlData = createCards();
 
     //creates the html in the appropiate folder for the user
@@ -82,4 +117,5 @@ function writeHTML() {
 //Specifically exports the staff array, but as an object.
 module.exports.staff = staff;
 
+//initializes app
 getStaff();
